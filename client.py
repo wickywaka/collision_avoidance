@@ -16,17 +16,17 @@ from functions import sendimage
 # Code
 ##################################################################################################
 image = cv2.imread('1.jpg')
-print(len(image))
+#print(len(image))
 #cv2.imshow('my_image', image)
 #cv2.waitKey()
 
-image_ = image.dumps()
+#image_ = image.dumps()
 
-image2 = np.loads(image_)
+#image2 = np.loads(image_)
 #cv2.imshow('my_image2',image2)
 #cv2.waitKey()
 
-sendimage(image_)
+sendimage(image)
 print("Function Ended")
 
 

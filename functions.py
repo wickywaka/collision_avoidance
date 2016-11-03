@@ -10,8 +10,8 @@ import numpy as np
 # Variables
 ##################################################################################################
 
-
 size_header = 10 # Number of bytes representing size of incoming data
+
 
 ##################################################################################################
 # Functions
@@ -22,9 +22,10 @@ size_header = 10 # Number of bytes representing size of incoming data
 # Waqar Rashid #####################
 
 # EDIT: edit this function so that we need to provide a connected socket and an image and it sends it on its own. So we would be able to use one socket and program would get a bit clean.
-def sendimage( message ):
+
+def sendimage( image ):
     "This function sends image represented by a string through socket to localhost:10000. Creates a socket for everycall"
-    
+    message = image.dumps()    
     # Create a TCP/IP socket and connect to ip and port
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect(('localhost', 10000))
@@ -43,6 +44,7 @@ def sendimage( message ):
     finally:
         sock.close()
         return
+
 # End of sendimage Function
 
 
