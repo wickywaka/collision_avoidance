@@ -18,7 +18,7 @@ from functions import sendimage
 
 # Create a TCP/IP socket and connect to ip and port
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect(('localhost', 10000))
+sock.connect(('pi2', 10000))
 
 try:
     image = cv2.imread('1.jpg')

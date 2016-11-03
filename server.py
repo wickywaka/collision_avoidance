@@ -20,7 +20,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("test print")
 
 # Bind the socket to the port
-sock.bind(('localhost',10000))
+sock.bind(('',10000)) # localhost doesn't work here, it makes listening to otherhost impossible somehow
 
 while True:
     
