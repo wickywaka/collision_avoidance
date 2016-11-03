@@ -8,3 +8,6 @@ size of 10 bytes and represents the size of image_string in bytes.
 ## Usage:
 First start the server by typing python server.py in command line (linux)
 then start the client by typing python client.py in command line (linux)
+
+## Caution
+It is important that you use python3 on both sides, otherwise it will throw errors
