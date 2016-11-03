@@ -28,20 +28,14 @@ while True:
     sock.listen(1)
 
     while True:
-        # Wait for a connection, connection is actually different socket
+        # Wait for a connection, "connection" is actually a different socket
         # on another port ( assigned by the kernel).
         connection, client_address = sock.accept()
         print("Connection from ")
         print(client_address)
         try:
             image = recvimage(connection)
-            cv2.imshow("received image", image)
-            cv2.waitKey()
-            cv2.destroyAllWindows()
-            cv2.waitKey(1)
-            cv2.waitKey(1)
-            cv2.waitKey(1)
-            cv2.waitKey(1)
+            print("function finished")
             break
         finally:
             # Clean up the connection
