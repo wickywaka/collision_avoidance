@@ -15,19 +15,18 @@ from functions import sendimage
 ##################################################################################################
 # Code
 ##################################################################################################
-image = cv2.imread('1.jpg')
-#print(len(image))
-#cv2.imshow('my_image', image)
-#cv2.waitKey()
 
-#image_ = image.dumps()
+# Create a TCP/IP socket and connect to ip and port
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect(('localhost', 10000))
 
-#image2 = np.loads(image_)
-#cv2.imshow('my_image2',image2)
-#cv2.waitKey()
+try:
+    image = cv2.imread('1.jpg')
+    sendimage(image, sock)
+    print("Function Ended")
+finally:
+    sock.close()
 
-sendimage(image)
-print("Function Ended")
 
 
 ##################################################################################################

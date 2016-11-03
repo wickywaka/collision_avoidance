@@ -23,28 +23,19 @@ size_header = 10 # Number of bytes representing size of incoming data
 
 # EDIT: edit this function so that we need to provide a connected socket and an image and it sends it on its own. So we would be able to use one socket and program would get a bit clean.
 
-def sendimage( image ):
-    "This function sends image represented by a string through socket to localhost:10000. Creates a socket for everycall"
+def sendimage( image, sock ):
+    "This function sends image through socket to localhost:10000."
     message = image.dumps()    
-    # Create a TCP/IP socket and connect to ip and port
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect(('localhost', 10000))
-
-    # After establishing connection, data can be sent
-    try:
-        # Making sure the size_header is of correct size
-        size = str(len(message))
-        if len(size)>size_header:
-            raise NameError('Size too big')
-        else:
-            size = size.zfill(size_header)  # Left fill with zeros to make it of correct size
-        # size is string so we need to encode it to bytes    
-        sock.sendall(size.encode())         # Default str.encode(encoding="utf-8", errors="strict")
-        sock.sendall(message)               # No need to encode message as it is already of type bytes here,
-    finally:
-        sock.close()
-        return
-
+    # Making sure the size_header is of correct size
+    size = str(len(message))
+    if len(size)>size_header:
+        raise NameError('Size too big')
+    else:
+        size = size.zfill(size_header)  # Left fill with zeros to make it of correct size
+    # size is string so we need to encode it to bytes    
+    sock.sendall(size.encode())         # Default str.encode(encoding="utf-8", errors="strict")
+    sock.sendall(message)               # No need to encode message as it is already of type bytes here,
+    return
 # End of sendimage Function
 
 
