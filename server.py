@@ -38,6 +38,7 @@ while True:
         try:
             start = time.time()
             image = recvimage(connection)
+            print("Time for recvimage is:)
             end = time.time()
             print("recimage time is :")
             print(end-start)

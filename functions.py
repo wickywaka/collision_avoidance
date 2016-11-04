@@ -52,30 +52,28 @@ def recvimage(connection):
     #pr = cProfile.Profile()
     #pr.enable()
     start = time.time()
-    #data_ = connection.recv(size_header)
-    data = connection.recv(4096)
+    data_ = connection.recv(size_header)
     # decode these bytes back to strings, counterpart to client side encoding
-    #size = data_.decode()
+    size = data_.decode()
     print(time.time() - start)
     start = time.time()    
-    #if size.isdecimal(): # Check wether the first 4 bytes are decimal
-    #print("The size of image is:");
-    #size_ = int(size)
-    size_ = 77013
-    #print(size_)
-    #data =  connection.recv(4096)
-    end = 0
-    while len(data)< size_:
-        data +=  connection.recv(4096) # Receive the data specified by first <header_size> bytes)
-    print(time.time() - start)
-    print("Data received")
-    print(len(data))
-    r_image = np.loads(data)
-    #pr.disable()
-    #pr.dump_stats('profiler.profil')
-    return r_image
-    #else:
-    #    return -1
+    if size.isdecimal(): # Check wether the first 4 bytes are decimal
+        #print("The size of image is:");
+        size_ = int(size)
+        #print(size_)
+        data =  connection.recv(4096)
+        end = 0
+        while len(data)< size_:
+            data +=  connection.recv(4096) # Receive the data specified by first <header_size> bytes)
+        print(time.time() - start)
+        #print("Data received")
+        #print(len(data))
+        r_image = np.loads(data)
+        #pr.disable()
+        #pr.dump_stats('profiler.profil')
+        return r_image
+    else:
+        return -1
 # End of recvimage Function
 
 
