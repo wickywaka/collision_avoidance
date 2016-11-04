@@ -6,9 +6,10 @@ import numpy as np
 import socket # imported for function sendimage
 import sys
 from functions import sendimage
-import time
-from picamera.array import PiRGBArray
-from picamera import PiCamera
+from functions import takeimage
+#import time
+#from picamera.array import PiRGBArray
+#from picamera import PiCamera
 
 
 ##################################################################################################
@@ -26,15 +27,16 @@ sock.connect(('192.168.1.5', 10000))
 
 try:
     # Initialize camera and grab a reference to the raw camera capture
-    camera = PiCamera()
-    rawCapture = PiRGBArray(camera)
+    #camera = PiCamera()
+    #rawCapture = PiRGBArray(camera)
 
     # Allow the camera to warmup
-    time.sleep(0.1)
+    #time.sleep(0.1)
 
     # grab an image from the camera
-    camera.capture(rawCapture, format="bgr")
-    image = rawCapture.array
+    #camera.capture(rawCapture, format="bgr")
+    #image = rawCapture.array
+    image = takeimage()
 
     # Send the image
     #image = cv2.imread('1.jpg')
