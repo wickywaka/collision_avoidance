@@ -1,4 +1,4 @@
-# Wed 02 Nov 2016 10:39:36 PM CET 
+# Wed 02 Nov 2016 10:39:36 PM CET
 # Waqar Rashid
 
 # Libraries
@@ -7,6 +7,7 @@ import sys
 import numpy as np
 import cv2
 from functions import recvimage
+import time
 
 # Important variables
 header_size = 10
@@ -23,7 +24,7 @@ print("test print")
 sock.bind(('',10000)) # localhost doesn't work here, it makes listening to otherhost impossible somehow
 
 while True:
-    
+
     # Listen for incoming connections, put the socket into server mode
     sock.listen(1)
 
@@ -34,7 +35,11 @@ while True:
         print("Connection from ")
         print(client_address)
         try:
+            start = time.time()
             image = recvimage(connection)
+            end = time.time()
+            print("recimage time is :")
+            print(end-start)
             cv2.imshow('image', image)
             cv2.waitKey()
             cv2.destroyAllWindows()
