@@ -35,6 +35,13 @@ while True:
         print(client_address)
         try:
             image = recvimage(connection)
+            cv2.imshow('image', image)
+            cv2.waitKey()
+            cv2.destroyAllWindows()
+            cv2.waitKey(1)
+            cv2.waitKey(1)
+            cv2.waitKey(1)
+            cv2.waitKey(1)
             print("function finished")
             break
         finally:

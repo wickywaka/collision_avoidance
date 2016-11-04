@@ -6,15 +6,48 @@ import numpy as np
 import socket # imported for function sendimage
 import sys
 from functions import sendimage
-from functions import takeimage
-#import time
-#from picamera.array import PiRGBArray
-#from picamera import PiCamera
+import io
+import picamera
+###################################################################################################
+
 
 
 ##################################################################################################
 # Important variables
 ##################################################################################################
+
+##################################################################################################
+
+
+
+##################################################################################################
+# Other Functions: functions the doesn't fall into categories of other function files are kept
+# here. Other reasons for them being here is because of them creating some problems when they
+# are in other files. See each functions for explanation why is it here
+##################################################################################################
+
+# Start of take image function
+# Help from http://rpihome.blogspot.de/2015/03/face-detection-with-raspberry-pi.html
+# Why Here: server.py goes crazy on PC when this function is added to functions.py
+def takeimage():
+    " Function to capture image from raspberry pi camera moduel"
+    #Create a memory stream so photos doesn't need to be saved in a file
+    stream = io.BytesIO()
+
+    #Get the picture (low resolution, so it should be quite fast)
+    #Here you can also specify other parameters (e.g.:rotate the image)
+    with picamera.PiCamera() as camera:
+        camera.resolution = (320, 240)
+        camera.capture(stream, format='jpeg')
+
+    #Convert the picture into a numpy array
+    buff = np.fromstring(stream.getvalue(), dtype=np.uint8)
+
+    #Now creates an OpenCV image
+    image = cv2.imdecode(buff, 1)
+    return image
+####################################################################################################
+
 
 
 ##################################################################################################
@@ -45,8 +78,5 @@ try:
 finally:
     sock.close()
 
-
-
 ##################################################################################################
-# End of File
-##################################################################################################
+

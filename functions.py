@@ -5,8 +5,6 @@ import cv2
 import socket
 import sys
 import numpy as np
-import io
-import picamera
 
 ##################################################################################################
 # Variables
@@ -67,25 +65,6 @@ def recvimage(connection):
         return -1
 # End of recvimage Function
 
-# Start of take image function
-# Help from 
-def takeimage():
-    " Function to capture image from raspberry pi camera moduel"
-    #Create a memory stream so photos doesn't need to be saved in a file
-    stream = io.BytesIO()
-
-    #Get the picture (low resolution, so it should be quite fast)
-    #Here you can also specify other parameters (e.g.:rotate the image)
-    with picamera.PiCamera() as camera:
-        camera.resolution = (320, 240)
-        camera.capture(stream, format='jpeg')
-
-    #Convert the picture into a numpy array
-    buff = np.fromstring(stream.getvalue(), dtype=np.uint8)
-
-    #Now creates an OpenCV image
-    image = cv2.imdecode(buff, 1)
-    return image
 
 
 ##################################################################################################    
