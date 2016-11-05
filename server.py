@@ -40,13 +40,6 @@ while True:
             end = time.time()
             print("recimage time is :")
             print(end-start)
-            #cv2.imshow('image', image)
-            #cv2.waitKey()
-            #cv2.destroyAllWindows()
-            #cv2.waitKey(1)
-            #cv2.waitKey(1)
-            #cv2.waitKey(1)
-            #cv2.waitKey(1)
             print("function finished")
             break
         finally:
