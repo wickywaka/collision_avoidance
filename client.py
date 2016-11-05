@@ -59,7 +59,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect(('192.168.1.5', 10000))
 
 # Send welcome message, this is just dummy message as first message of socket seems to take longer so just doing it here
-sock.sendall('Welcome!!!'.encode())
+#sock.sendall('Welcome!!!'.encode())
 
 try:
     # Initialize camera and grab a reference to the raw camera capture

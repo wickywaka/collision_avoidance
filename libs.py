@@ -40,7 +40,7 @@ def recvimage(connection):
         size_ = int(size)
         print(size_)
         data =  connection.recv(4096)
-        end = 0
+        #end = 0
         while len(data)< size_:
             data +=  connection.recv(4096) # Receive the data specified by first <header_size> bytes)
         print(time.time() - start)

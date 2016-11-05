@@ -34,7 +34,7 @@ while True:
         connection, client_address = sock.accept()
         print("Connection from ")
         print(client_address)
-        print(connection.recv(10))
+        #print(connection.recv(10))
         try:
             start = time.time()
             image = recvimage(connection)
