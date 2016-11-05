@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import socket # imported for function sendimage
 import sys
-from functions import sendimage
+from libc import sendimage
 import io
 import picamera
 ###################################################################################################

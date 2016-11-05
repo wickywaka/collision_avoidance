@@ -6,7 +6,7 @@ import socket
 import sys
 import numpy as np
 import cv2
-from functions import recvimage
+from libs import recvimage
 import time
 
 # Important variables
@@ -38,20 +38,10 @@ while True:
         try:
             start = time.time()
             image = recvimage(connection)
-            print("Time for recvimage is:)
+            print("Time for recvimage is:")
             end = time.time()
             print("recimage time is :")
             print(end-start)
-<<<<<<< HEAD
-=======
-            #cv2.imshow('image', image)
-            #cv2.waitKey()
-            #cv2.destroyAllWindows()
-            #cv2.waitKey(1)
-            #cv2.waitKey(1)
-            #cv2.waitKey(1)
-            #cv2.waitKey(1)
->>>>>>> 39405f291d129222ac3c9151a8e6d8cb1d1815e7
             print("function finished")
             break
         finally:
