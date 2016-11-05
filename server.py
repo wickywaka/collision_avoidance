@@ -34,12 +34,24 @@ while True:
         connection, client_address = sock.accept()
         print("Connection from ")
         print(client_address)
+        print(connection.recv(10))
         try:
             start = time.time()
             image = recvimage(connection)
+            print("Time for recvimage is:)
             end = time.time()
             print("recimage time is :")
             print(end-start)
+<<<<<<< HEAD
+=======
+            #cv2.imshow('image', image)
+            #cv2.waitKey()
+            #cv2.destroyAllWindows()
+            #cv2.waitKey(1)
+            #cv2.waitKey(1)
+            #cv2.waitKey(1)
+            #cv2.waitKey(1)
+>>>>>>> 39405f291d129222ac3c9151a8e6d8cb1d1815e7
             print("function finished")
             break
         finally:

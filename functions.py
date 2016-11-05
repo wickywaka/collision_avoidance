@@ -65,8 +65,8 @@ def recvimage(connection):
         while len(data)< size_:
             data +=  connection.recv(4096) # Receive the data specified by first <header_size> bytes)
         print(time.time() - start)
-        print("Data received")
-        print(len(data))
+        #print("Data received")
+        #print(len(data))
         r_image = np.loads(data)
         return r_image
     else:
