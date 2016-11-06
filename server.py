@@ -40,10 +40,21 @@ while True:
             image = recvimage(connection)
             print("Time for recvimage is:")
             end = time.time()
-            print("recimage time is :")
+            #print("recimage time is :")
             print(end-start)
-            print("function finished")
+            cv2.imshow("image",image)
+            cv2.waitKey()
+            cv2.destroyAllWindows()	
+            cv2.waitKey(1)
+            cv2.waitKey(1)
+            cv2.waitKey(1)
+            cv2.waitKey(1)
+            print("function finished\n\n\n")
             break
         finally:
             # Clean up the connection
             connection.close()
+            
+# refernece commands            
+#sock.setsockopt(socket.SOL_TCP, socket.TCP_NODELAY, 1)
+#>>> sock.getsockopt(socket.SOL_TCP, socket.TCP_NODELAY)
