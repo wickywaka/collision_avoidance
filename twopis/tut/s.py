@@ -22,17 +22,21 @@ try:
             break
         # Construct a stream to hold the image data and read the image
         # data from the connection
+
         image_stream = io.BytesIO()
         image_stream.write(connection.read(image_len))
         # Rewind the stream, open it as an image with PIL and do some
         # processing on it
         image_stream.seek(0)
         image = Image.open(image_stream)
-        print('Image is %dx%d' % image.size)
+        #print('Image is %dx%d' % image.size)
         image.verify()
-        print('Image is verified')
-        print('Time to receive image is:')
-        print(time.time()-start)
+        total_time = time.time()-start
+        baud = image_len/total_time
+        print("Bytes: "+str(image_len)+" \t Baudrate: "+str(baud)+"\t Time: "+str(total_time))
+        #print('Image is verified')
+        #print('Time to receive image is:')
+        #print(time.time()-start)
 finally:
     connection.close()
     server_socket.close()

@@ -32,9 +32,9 @@ def recvimage(connection):
     data_ = connection.recv(size_header)
     # decode these bytes back to strings, counterpart to client side encoding
     size = data_.decode()
-    print(time.time() - start)
+    #print(time.time() - start)
     start = time.time()
-    print(size)
+    #print(size)
     if size.isdecimal(): # Check wether the first 4 bytes are decimal
         print("The size of image is:");
         size_ = int(size)
@@ -43,7 +43,7 @@ def recvimage(connection):
         #end = 0
         while len(data)< size_:
             data +=  connection.recv(4096) # Receive the data specified by first <header_size> bytes)
-        print(time.time() - start)
+        #print(time.time() - start)
         #print("Data received")
         #print(len(data))
         r_image = np.loads(data)

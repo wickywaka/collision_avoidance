@@ -44,11 +44,11 @@ while True:
             print(end-start)
             cv2.imshow("image",image)
             cv2.waitKey()
-            cv2.destroyAllWindows()	
-            cv2.waitKey(1)
-            cv2.waitKey(1)
-            cv2.waitKey(1)
-            cv2.waitKey(1)
+            cv2.destroyAllWindows()
+            cv2.waitKey()
+            cv2.waitKey()
+            cv2.waitKey()
+            cv2.waitKey()
             print("function finished\n\n\n")
             break
         finally:

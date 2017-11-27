@@ -1,0 +1,8 @@
+Information about GPU:
+
+https://ia600408.us.archive.org/30/items/pdfy-rXdEJ1TyaZLR_L12/VideoCoreIV-AG100-R.pdf
+
+https://petewarden.com/2014/08/07/how-to-optimize-raspberry-pi-code-using-its-gpu/
+The Broadcom GPU doesn’t have very much dedicated memory at all. In fact, the only RAM that’s directly accessible is 4,096 bytes in an area known as Vertex Program Memory.
+There are actually 12 cores inside the GPU, each one known as a QPU for Quad Processing Unit.
+several people mentioned that the Texture Memory Unit or TMU was a lot more efficient than VPM.

@@ -1,0 +1,342 @@
+
+General/Common options:
+  --all              display all information available
+  -C, --get-ctrl=<ctrl>[,<ctrl>...]
+                     get the value of the controls [VIDIOC_G_EXT_CTRLS]
+  -c, --set-ctrl=<ctrl>=<val>[,<ctrl>=<val>...]
+                     set the value of the controls [VIDIOC_S_EXT_CTRLS]
+  -D, --info         show driver info [VIDIOC_QUERYCAP]
+  -d, --device=<dev> use device <dev> instead of /dev/video0
+                     if <dev> starts with a digit, then /dev/video<dev> is used
+  -h, --help         display this help message
+  --help-all         all options
+  --help-io          input/output options
+  --help-misc        miscellaneous options
+  --help-overlay     overlay format options
+  --help-selection   crop/selection options
+  --help-stds        standards and other video timings options
+  --help-streaming   streaming options
+  --help-tuner       tuner/modulator options
+  --help-vbi         VBI format options
+  --help-vidcap      video capture format options
+  --help-vidout      vidout output format options
+  -k, --concise      be more concise if possible.
+  -l, --list-ctrls   display all controls and their values [VIDIOC_QUERYCTRL]
+  -L, --list-ctrls-menus
+		     display all controls and their menus [VIDIOC_QUERYMENU]
+  -w, --wrapper      use the libv4l2 wrapper library.
+  --list-devices     list all v4l devices
+  --log-status       log the board status in the kernel log [VIDIOC_LOG_STATUS]
+  --get-priority     query the current access priority [VIDIOC_G_PRIORITY]
+  --set-priority=<prio>
+                     set the new access priority [VIDIOC_S_PRIORITY]
+                     <prio> is 1 (background), 2 (interactive) or 3 (record)
+  --silent           only set the result code, do not print any messages
+  --sleep=<secs>     sleep <secs>, call QUERYCAP and close the file handle
+  --verbose          turn on verbose ioctl status reporting
+
+Tuner/Modulator options:
+  -F, --get-freq     query the frequency [VIDIOC_G_FREQUENCY]
+  -f, --set-freq=<freq>
+                     set the frequency to <freq> MHz [VIDIOC_S_FREQUENCY]
+  -T, --get-tuner    query the tuner settings [VIDIOC_G_TUNER]
+  -t, --set-tuner=<mode>
+                     set the audio mode of the tuner [VIDIOC_S_TUNER]
+                     Possible values: mono, stereo, lang2, lang1, bilingual
+  --tuner-index=<idx> Use idx as tuner idx for tuner/modulator commands
+  --list-freq-bands  display all frequency bands for the tuner/modulator
+                     [VIDIOC_ENUM_FREQ_BANDS]
+  --get-modulator    query the modulator settings [VIDIOC_G_MODULATOR]
+  --set-modulator=<txsubchans>
+                     set the sub-carrier modulation [VIDIOC_S_MODULATOR]
+                     <txsubchans> is one of:
+                     mono:	 Modulate as mono
+                     mono-rds:	 Modulate as mono with RDS (radio only)
+                     stereo:	 Modulate as stereo
+                     stereo-rds: Modulate as stereo with RDS (radio only)
+                     bilingual:	 Modulate as bilingual
+                     mono-sap:	 Modulate as mono with Second Audio Program
+                     stereo-sap: Modulate as stereo with Second Audio Program
+  --freq-seek=dir=<0/1>,wrap=<0/1>,spacing=<hz>,low=<freq>,high=<freq>
+                     perform a hardware frequency seek [VIDIOC_S_HW_FREQ_SEEK]
+                     dir is 0 (seek downward) or 1 (seek upward)
+                     wrap is 0 (do not wrap around) or 1 (wrap around)
+                     spacing sets the seek resolution (use 0 for default)
+                     low and high set the low and high seek frequency range in MHz
+
+Input/Output options:
+  -I, --get-input    query the video input [VIDIOC_G_INPUT]
+  -i, --set-input=<num>
+                     set the video input to <num> [VIDIOC_S_INPUT]
+  -N, --list-outputs display video outputs [VIDIOC_ENUMOUTPUT]
+  -n, --list-inputs  display video inputs [VIDIOC_ENUMINPUT]
+  -O, --get-output   query the video output [VIDIOC_G_OUTPUT]
+  -o, --set-output=<num>
+                     set the video output to <num> [VIDIOC_S_OUTPUT]
+  --set-audio-output=<num>
+                     set the audio output to <num> [VIDIOC_S_AUDOUT]
+  --get-audio-input  query the audio input [VIDIOC_G_AUDIO]
+  --set-audio-input=<num>
+                     set the audio input to <num> [VIDIOC_S_AUDIO]
+  --get-audio-output query the audio output [VIDIOC_G_AUDOUT]
+  --set-audio-output=<num>
+                     set the audio output to <num> [VIDIOC_S_AUDOUT]
+  --list-audio-outputs
+                     display audio outputs [VIDIOC_ENUMAUDOUT]
+  --list-audio-inputs
+                     display audio inputs [VIDIOC_ENUMAUDIO]
+
+Standards/Timings options:
+  --list-standards   display supported video standards [VIDIOC_ENUMSTD]
+  -S, --get-standard
+                     query the video standard [VIDIOC_G_STD]
+  -s, --set-standard=<num>
+                     set the video standard to <num> [VIDIOC_S_STD]
+                     <num> a numerical v4l2_std value, or one of:
+                     pal or pal-X (X = B/G/H/N/Nc/I/D/K/M/60) (V4L2_STD_PAL)
+                     ntsc or ntsc-X (X = M/J/K) (V4L2_STD_NTSC)
+                     secam or secam-X (X = B/G/H/D/K/L/Lc) (V4L2_STD_SECAM)
+  --get-detected-standard
+                     display detected input video standard [VIDIOC_QUERYSTD]
+  --list-dv-timings  list supp. standard dv timings [VIDIOC_ENUM_DV_TIMINGS]
+  --set-dv-bt-timings
+                     query: use the output of VIDIOC_QUERY_DV_TIMINGS
+                     index=<index>: use the index as provided by --list-dv-timings
+                     or give a fully specified timings:
+                     width=<width>,height=<height>,interlaced=<0/1>,
+                     polarities=<polarities mask>,pixelclock=<pixelclock Hz>,
+                     hfp=<horizontal front porch>,hs=<horizontal sync>,
+                     hbp=<horizontal back porch>,vfp=<vertical front porch>,
+                     vs=<vertical sync>,vbp=<vertical back porch>,
+                     il_vfp=<vertical front porch for bottom field>,
+                     il_vs=<vertical sync for bottom field>,
+                     il_vbp=<vertical back porch for bottom field>,
+                     set the digital video timings according to the BT 656/1120
+                     standard [VIDIOC_S_DV_TIMINGS]
+  --get-dv-timings   get the digital video timings in use [VIDIOC_G_DV_TIMINGS]
+  --query-dv-timings query the detected dv timings [VIDIOC_QUERY_DV_TIMINGS]
+  --get-dv-timings-cap
+                     get the dv timings capabilities [VIDIOC_DV_TIMINGS_CAP]
+
+Video Capture Formats options:
+  --list-formats     display supported video formats [VIDIOC_ENUM_FMT]
+  --list-formats-mplane
+                     display supported video multi-planar formats
+                     [VIDIOC_ENUM_FMT]
+  --list-formats-ext display supported video formats including frame sizes
+                     and intervals
+  --list-formats-ext-mplane
+                     display supported video multi-planar formats including
+                     frame sizes and intervals
+  --list-framesizes=<f>
+                     list supported framesizes for pixelformat <f>
+                     [VIDIOC_ENUM_FRAMESIZES]
+                     pixelformat is the fourcc value as a string
+  --list-frameintervals=width=<w>,height=<h>,pixelformat=<f>
+                     list supported frame intervals for pixelformat <f> and
+                     the given width and height [VIDIOC_ENUM_FRAMEINTERVALS]
+                     pixelformat is the fourcc value as a string
+  -V, --get-fmt-video
+     		     query the video capture format [VIDIOC_G_FMT]
+  -v, --set-fmt-video=width=<w>,height=<h>,pixelformat=<f>
+                     set the video capture format [VIDIOC_S_FMT]
+                     pixelformat is either the format index as reported by
+                     --list-formats, or the fourcc value as a string
+  --try-fmt-video=width=<w>,height=<h>,pixelformat=<f>
+                     try the video capture format [VIDIOC_TRY_FMT]
+                     pixelformat is either the format index as reported by
+                     --list-formats, or the fourcc value as a string
+  --get-fmt-video-mplane
+     		     query the video capture format through the multi-planar API
+                     [VIDIOC_G_FMT]
+  --set-fmt-video-mplane
+  --try-fmt-video-mplane=width=<w>,height=<h>,pixelformat=<f>
+                     set/try the video capture format using the multi-planar API
+                     [VIDIOC_S/TRY_FMT]
+                     pixelformat is either the format index as reported by
+                     --list-formats-mplane, or the fourcc value as a string
+
+Video Output Formats options:
+  --list-formats-out display supported video output formats [VIDIOC_ENUM_FMT]
+  --get-fmt-video-out
+     		     query the video output format [VIDIOC_G_FMT]
+  --set-fmt-video-out
+  --try-fmt-video-out=width=<w>,height=<h>,pixelformat=<f>
+                     set/try the video output format [VIDIOC_TRY_FMT]
+                     pixelformat is either the format index as reported by
+                     --list-formats-out, or the fourcc value as a string
+  --list-formats-out-mplane
+                     display supported video output multi-planar formats
+                     [VIDIOC_ENUM_FMT]
+  --get-fmt-video-out-mplane
+     		     query the video output format using the multi-planar API
+                     [VIDIOC_G_FMT]
+  --set-fmt-video-out-mplane
+  --try-fmt-video-out-mplane=width=<w>,height=<h>,pixelformat=<f>
+                     set/try the video output format with the multi-planar API
+                     [VIDIOC_S/TRY_FMT]
+                     pixelformat is either the format index as reported by
+                     --list-formats-out-mplane, or the fourcc value as a string
+
+Video Overlay options:
+  --list-formats-overlay
+                     display supported overlay formats [VIDIOC_ENUM_FMT]
+  --overlay=<on>     turn overlay on (1) or off (0) (VIDIOC_OVERLAY)
+  --get-fmt-overlay  query the video overlay format [VIDIOC_G_FMT]
+  --get-fmt-output-overlay
+     		     query the video output overlay format [VIDIOC_G_FMT]
+  --set-fmt-overlay
+  --try-fmt-overlay
+  --set-fmt-output-overlay
+  --try-fmt-output-overlay=chromakey=<key>,global_alpha=<alpha>,
+                           top=<t>,left=<l>,width=<w>,height=<h>,field=<f>
+     		     set/try the video or video output overlay format
+                     [VIDIOC_S/TRY_FMT], <f> can be one of:
+                     any, none, top, bottom, interlaced, seq_tb, seq_bt,
+                     alternate, interlaced_tb, interlaced_bt
+  --get-fbuf         query the overlay framebuffer data [VIDIOC_G_FBUF]
+  --set-fbuf=chromakey=<b>,global_alpha=<b>,local_alpha=<b>,local_inv_alpha=<b>
+		     set the overlay framebuffer [VIDIOC_S_FBUF]
+                     b = 0 or 1
+
+VBI Formats options:
+  --get-sliced-vbi-cap
+		     query the sliced VBI capture capabilities
+                     [VIDIOC_G_SLICED_VBI_CAP]
+  --get-sliced-vbi-out-cap
+		     query the sliced VBI output capabilities
+                     [VIDIOC_G_SLICED_VBI_CAP]
+  -B, --get-fmt-sliced-vbi
+		     query the sliced VBI capture format [VIDIOC_G_FMT]
+  --get-fmt-sliced-vbi-out
+		     query the sliced VBI output format [VIDIOC_G_FMT]
+  -b, --set-fmt-sliced-vbi
+  --try-fmt-sliced-vbi
+  --set-fmt-sliced-vbi-out
+  --try-fmt-sliced-vbi-out=<mode>
+                     set/try the sliced VBI capture/output format to <mode>
+                     [VIDIOC_S/TRY_FMT], <mode> is a comma separated list of:
+                     off:      turn off sliced VBI (cannot be combined with
+                               other modes)
+                     teletext: teletext (PAL/SECAM)
+                     cc:       closed caption (NTSC)
+                     wss:      widescreen signal (PAL/SECAM)
+                     vps:      VPS (PAL/SECAM)
+  --get-fmt-vbi      query the VBI capture format [VIDIOC_G_FMT]
+  --get-fmt-vbi-out  query the VBI output format [VIDIOC_G_FMT]
+
+Selection/Cropping options:
+  --get-cropcap      query the crop capabilities [VIDIOC_CROPCAP]
+  --get-crop	     query the video capture crop window [VIDIOC_G_CROP]
+  --set-crop=top=<x>,left=<y>,width=<w>,height=<h>
+                     set the video capture crop window [VIDIOC_S_CROP]
+  --get-cropcap-output
+                     query crop capabilities for video output [VIDIOC_CROPCAP]
+  --get-crop-output  query the video output crop window [VIDIOC_G_CROP]
+  --set-crop-output=top=<x>,left=<y>,width=<w>,height=<h>
+                     set the video output crop window [VIDIOC_S_CROP]
+  --get-cropcap-overlay
+                     query crop capabilities for video overlay [VIDIOC_CROPCAP]
+  --get-crop-overlay query the video overlay crop window [VIDIOC_G_CROP]
+  --set-crop-overlay=top=<x>,left=<y>,width=<w>,height=<h>
+                     set the video overlay crop window [VIDIOC_S_CROP]
+  --get-cropcap-output-overlay
+                     query the crop capabilities for video output overlays
+                     [VIDIOC_CROPCAP]
+  --get-crop-output-overlay
+                     query the video output overlay crop window [VIDIOC_G_CROP]
+  --set-crop-output-overlay=top=<x>,left=<y>,width=<w>,height=<h>
+                     set the video output overlay crop window [VIDIOC_S_CROP]
+  --get-selection=target=<target>
+                     query the video capture selection rectangle [VIDIOC_G_SELECTION]
+                     See --set-selection command for the valid <target> values.
+  --set-selection=target=<target>,flags=<flags>,top=<x>,left=<y>,width=<w>,height=<h>
+                     set the video capture selection rectangle [VIDIOC_S_SELECTION]
+                     target=crop|crop_bounds|crop_default|compose|compose_bounds|
+                            compose_default|compose_padded
+                     flags=le|ge
+  --get-selection-output=target=<target>
+                     query the video output selection rectangle [VIDIOC_G_SELECTION]
+                     See --set-selection command for the valid <target> values.
+  --set-selection-output=target=<target>,flags=<flags>,top=<x>,left=<y>,width=<w>,height=<h>
+                     set the video output selection rectangle [VIDIOC_S_SELECTION]
+                     See --set-selection command for the arguments.
+
+Miscellaneous options:
+  --wait-for-event=<event>
+                     wait for an event [VIDIOC_DQEVENT]
+                     <event> is the event number or one of:
+                     eos, vsync, ctrl=<id>, frame_sync
+                     where <id> is the name of the control
+  --poll-for-event=<event>
+                     poll for an event [VIDIOC_DQEVENT]
+                     see --wait-for-event for possible events
+  -P, --get-parm     display video parameters [VIDIOC_G_PARM]
+  -p, --set-parm=<fps>
+                     set video framerate in <fps> [VIDIOC_S_PARM]
+  --get-output-parm  display output video parameters [VIDIOC_G_PARM]
+  --set-output-parm=<fps>
+                     set output video framerate in <fps> [VIDIOC_S_PARM]
+  --get-jpeg-comp    query the JPEG compression [VIDIOC_G_JPEGCOMP]
+  --set-jpeg-comp=quality=<q>,markers=<markers>,comment=<c>,app<n>=<a>
+                     set the JPEG compression [VIDIOC_S_JPEGCOMP]
+                     <n> is the app segment: 0-9/a-f, <a> is the actual string.
+                     <markers> is a colon separated list of:
+                     dht:      Define Huffman Tables
+                     dqt:      Define Quantization Tables
+                     dri:      Define Restart Interval
+  --encoder-cmd=cmd=<cmd>,flags=<flags>
+                     Send a command to the encoder [VIDIOC_ENCODER_CMD]
+                     cmd=start|stop|pause|resume
+                     flags=stop_at_gop_end
+  --try-encoder-cmd=cmd=<cmd>,flags=<flags>
+                     Try an encoder command [VIDIOC_TRY_ENCODER_CMD]
+                     See --encoder-cmd for the arguments.
+  --decoder-cmd=cmd=<cmd>,flags=<flags>,stop_pts=<pts>,start_speed=<speed>,
+                     start_format=<none|gop>
+                     Send a command to the decoder [VIDIOC_DECODER_CMD]
+                     cmd=start|stop|pause|resume
+                     flags=start_mute_audio|pause_to_black|stop_to_black|
+                           stop_immediately
+  --try-decoder-cmd=cmd=<cmd>,flags=<flags>
+                     Try a decoder command [VIDIOC_TRY_DECODER_CMD]
+                     See --decoder-cmd for the arguments.
+
+Video Streaming options:
+  --stream-count=<count>
+                     stream <count> buffers. The default is to keep streaming
+                     forever. This count does not include the number of initial
+                     skipped buffers as is passed by --stream-skip.
+  --stream-skip=<count>
+                     skip the first <count> buffers. The default is 0.
+  --stream-to=<file> stream to this file. The default is to discard the
+                     data. If <file> is '-', then the data is written to stdout
+                     and the --silent option is turned on automatically.
+  --stream-poll      use non-blocking mode and select() to stream.
+  --stream-mmap=<count>
+                     capture video using mmap() [VIDIOC_(D)QBUF]
+                     count: the number of buffers to allocate. The default is 3.
+  --stream-user=<count>
+                     capture video using user pointers [VIDIOC_(D)QBUF]
+                     count: the number of buffers to allocate. The default is 3.
+  --stream-from=<file> stream from this file. The default is to generate a pattern.
+                     If <file> is '-', then the data is read from stdin.
+  --stream-loop      loop when the end of the file we are streaming from is reached.
+                     The default is to stop.
+  --stream-pattern=<count>
+                     choose output pattern. The default is 0.
+  --stream-out-mmap=<count>
+                     output video using mmap() [VIDIOC_(D)QBUF]
+                     count: the number of buffers to allocate. The default is 3.
+  --stream-out-user=<count>
+                     output video using user pointers [VIDIOC_(D)QBUF]
+                     count: the number of buffers to allocate. The default is 3.
+  --list-buffers     list all video buffers [VIDIOC_QUERYBUF]
+  --list-buffers-out list all video output buffers [VIDIOC_QUERYBUF]
+  --list-buffers-vbi list all VBI buffers [VIDIOC_QUERYBUF]
+  --list-buffers-vbi-out
+                     list all VBI output buffers [VIDIOC_QUERYBUF]
+  --list-buffers-sliced-vbi
+                     list all sliced VBI buffers [VIDIOC_QUERYBUF]
+  --list-buffers-sliced-vbi-out
+                     list all sliced VBI output buffers [VIDIOC_QUERYBUF]
